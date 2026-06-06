@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Privacy Policy — Divine DevTools</title>
+  <meta name="description" content="Privacy Policy for Divine DevTools. Learn how we handle your settings, API keys, and DOM details entirely locally on your device.">
+  
+  <link rel="icon" type="image/png" href="assets/logo.png">
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .privacy-content {
+      padding-top: 130px;
+      padding-bottom: 80px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .privacy-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 20px;
+      padding: 3rem 2.5rem;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+    }
+    h1 {
+      font-family: var(--font-title);
+      font-size: 2.5rem;
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+      background: var(--primary-gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .meta-date {
+      color: var(--text-secondary);
+      font-size: 0.85rem;
+      margin-bottom: 2rem;
+      font-family: var(--font-mono);
+    }
+    h2 {
+      font-family: var(--font-title);
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-top: 2rem;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+      line-height: 1.6;
+    }
+    ul {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      margin-left: 1.5rem;
+      margin-bottom: 1.25rem;
+    }
+    li {
+      margin-bottom: 0.5rem;
+    }
+    code {
+      font-family: var(--font-mono);
+      background: rgba(255, 255, 255, 0.05);
+      padding: 0.1rem 0.3rem;
+      border-radius: 4px;
+      font-size: 0.85rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAVIGATION HEADER -->
+  <header>
+    <div class="container nav-container">
+      <div class="logo-section">
+        <a href="index.html" class="logo-section">
+          <img src="assets/logo.png" alt="Divine DevTools Logo" class="logo-img">
+          <span class="logo-text">Divine DevTools</span>
+        </a>
+      </div>
+      <nav class="nav-links">
+        <a href="index.html#features" class="nav-link">Features</a>
+        <a href="index.html#setup" class="nav-link">Setup</a>
+        <a href="privacy.html" class="nav-link" style="color: var(--text-primary);">Privacy Policy</a>
+        <a href="https://github.com/rajann44/divine-devtools" target="_blank" rel="noopener noreferrer" class="btn-github">
+          <svg width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+            <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+          </svg>
+          GitHub
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- PRIVACY POLICY CONTENT -->
+  <main class="container privacy-content">
+    <article class="privacy-card">
+      <h1>Privacy Policy for Divine DevTools</h1>
+      <div class="meta-date">Last updated: June 7, 2026</div>
+
+      <p>
+        Divine DevTools ("we", "our", "us") values your privacy. This Privacy Policy describes how we handle information in connection with the Divine DevTools browser extension.
+      </p>
+
+      <h2>1. What Data We Collect & Access</h2>
+      <p>
+        Divine DevTools is designed to operate locally and serverlessly in your browser. We do <strong>not</strong> collect, monitor, or store personal data, passwords, or browsing histories on any server controlled by us.
+      </p>
+      <ul>
+        <li><strong>API Keys & Settings</strong>: To authenticate with artificial intelligence providers, you can optionally provide an OpenAI API key or a Google Gemini API key. These keys are saved strictly in your browser's local sandbox using <code>chrome.storage.local</code>. They are never transmitted to us or any unauthorized third parties.</li>
+        <li><strong>Element Context & Prompts</strong>: When using the Visual DOM Inspector to analyze elements on a webpage, the extension extracts the relevant HTML/CSS structure of the selected element and compiles it with your text prompt. This text is sent directly to your chosen AI provider (OpenAI or Google Gemini) to generate responses.</li>
+        <li><strong>Custom Skills Rules</strong>: Any developer guidelines or rulesets (<code>SKILL.md</code> files) you import are saved entirely within your browser's local storage and are processed locally to filter matched skills.</li>
+      </ul>
+
+      <h2>2. Third-Party Services</h2>
+      <p>
+        When you ask the AI assistant questions, the extension sends your prompt and the selected DOM context to the AI service provider you have configured:
+      </p>
+      <ul>
+        <li><strong>Google Gemini API</strong>: Subject to the <a href="https://policies.google.com/privacy" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: #a855f7;">Google Privacy Policy</a></li>
+        <li><strong>OpenAI API</strong>: Subject to the <a href="https://openai.com/policies/privacy-policy" target="_blank" rel="noopener noreferrer" style="text-decoration: underline; color: #a855f7;">OpenAI API Privacy Policy</a></li>
+      </ul>
+      <p>
+        We encourage you to review the privacy policies of the AI service provider you configure.
+      </p>
+
+      <h2>3. Data Sharing & Disclosure</h2>
+      <p>
+        We do not sell, trade, rent, or share any of your inputs, keys, page contexts, or user preferences with third parties. All network traffic goes directly from your browser to your configured AI endpoints.
+      </p>
+
+      <h2>4. Data Retention and Deletion</h2>
+      <p>
+        All data is stored on your device. You can clear all saved settings, API keys, and custom skills at any time by clicking the "Clear All Data" button in the extension Settings pane, or by simply uninstalling the extension.
+      </p>
+
+      <h2>5. Changes to This Policy</h2>
+      <p>
+        We may update this Privacy Policy from time to time. Any changes will be reflected by updating the "Last updated" date at the top of this document.
+      </p>
+
+      <h2>6. Contact Us</h2>
+      <p>
+        If you have any questions or feedback regarding privacy, please contact:
+        <br>
+        <a href="mailto:publisher@divine-ai.org" style="color: #06b6d4; text-decoration: underline;">publisher@divine-ai.org</a>
+      </p>
+    </article>
+  </main>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="container footer-container">
+      <div>
+        <p>&copy; 2026 Divine DevTools. Distributed under MIT License.</p>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="privacy.html" style="color: var(--text-primary);">Privacy Policy</a>
+        <a href="https://github.com/rajann44/divine-devtools/issues" target="_blank" rel="noopener noreferrer">Support</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
