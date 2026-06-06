@@ -1,0 +1,14 @@
+{
+  "extensionName": {
+    "message": "Divine DevTools",
+    "description": "The name of the extension."
+  },
+  "extensionDescription": {
+    "message": "Visual DOM Inspector and AI Side Panel for web app development with Skills integration.",
+    "description": "The description of the extension."
+  },
+  "actionTitle": {
+    "message": "Open Divine DevTools",
+    "description": "Tooltip for the extension icon."
+  }
+}
