@@ -11,9 +11,9 @@
     "storage"
   ],
   "host_permissions": [
-    "https://api.github.com/*",
-    "https://raw.githubusercontent.com/*",
-    "https://skills.sh/*"
+    "<all_urls>",
+    "https://*/*",
+    "http://*/*"
   ],
   "action": {
     "default_title": "__MSG_actionTitle__",
@@ -36,5 +36,16 @@
   "background": {
     "service_worker": "background.js",
     "type": "module"
-  }
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "content-script.js"
+      ],
+      "run_at": "document_end"
+    }
+  ]
 }

@@ -473,33 +473,6 @@ What would you like me to do with this component? (e.g., refactor, style, or acc
       setIsInspectMode(nextMode);
       setErrorText(null);
 
-      if (nextMode) {
-        // Inject content script dynamically if not already present on this page
-        try {
-          const checkResult = await chrome.scripting.executeScript({
-            target: { tabId: tab.id },
-            func: () => {
-              const win = window as any;
-              if (win.__divineDevtoolsLoaded) return true;
-              win.__divineDevtoolsLoaded = true;
-              return false;
-            }
-          });
-          const isLoaded = checkResult?.[0]?.result;
-          if (!isLoaded) {
-            await chrome.scripting.executeScript({
-              target: { tabId: tab.id },
-              files: ['content-script.js']
-            });
-          }
-        } catch (scriptErr) {
-          console.error('Dynamic injection failed:', scriptErr);
-          setErrorText('Cannot inspect this page. Verify it is a valid web page (not a system or store URL).');
-          setIsInspectMode(false);
-          return;
-        }
-      }
-
       await chrome.tabs.sendMessage(tab.id, {
         action: nextMode ? 'startSelection' : 'stopSelection'
       });
