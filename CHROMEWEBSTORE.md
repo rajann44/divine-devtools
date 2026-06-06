@@ -66,7 +66,7 @@ English
 | `activeTab` | permissions | Required to inspect, retrieve element tag details, and highlight DOM nodes on the active page when triggered by the user. |
 | `scripting` | permissions | Required to dynamically inject target indicators and element inspection overlays into the active page. |
 | `storage` | permissions | Required to securely save user API keys, selected options, and custom developer skills guidelines on the local device. |
-| `http://*/*`, `https://*/*` | host_permissions | Required to run the element inspector on any developer-defined webpage and fetch custom coding rules from external sources (e.g., GitHub and the skills registry). |
+| `https://api.github.com/*`, `https://raw.githubusercontent.com/*`, `https://skills.sh/*` | host_permissions | Required to fetch custom developer guidelines, rulesets, and coding standards (SKILL.md) directly from external repositories (via the GitHub API and raw content assets) and the skills registry. |
 
 ## Privacy Practices Tab - Developer Dashboard Fields
 
@@ -91,8 +91,8 @@ Copy and paste these exact justifications into the **Privacy practices** tab of 
 * **`storage`**
   > Required to persist user settings (such as LLM provider selection and model configuration) and custom installed developer guidelines (SKILL.md rulesets) securely on-device.
 
-* **Host Permissions (`http://*/*`, `https://*/*`)**
-  > Required to enable the visual DOM inspector overlays on developer-specified local and public testing sites, and to fetch coding standards/rulesets from external developer repositories (like GitHub and package registries).
+* **Host Permissions (`https://api.github.com/*`, `https://raw.githubusercontent.com/*`, `https://skills.sh/*`)**
+  > Required to fetch custom developer guidelines, rulesets, and coding standards (SKILL.md files) directly from external developer repositories (via the GitHub API and raw file assets) and to query the official skills.sh registry.
 
 ### 3. Remote Code Use Justification
 > **Field**: Justification for remote code use

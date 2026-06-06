@@ -11,9 +11,9 @@
     "storage"
   ],
   "host_permissions": [
-    "<all_urls>",
-    "https://*/*",
-    "http://*/*"
+    "https://api.github.com/*",
+    "https://raw.githubusercontent.com/*",
+    "https://skills.sh/*"
   ],
   "action": {
     "default_title": "__MSG_actionTitle__",

@@ -488,34 +488,30 @@ What would you like me to do with this component? (e.g., refactor, style, or acc
   // Mock selection for local development testing
   const triggerMockSelection = () => {
     const mockContext: ElementContext = {
-      tagName: 'div',
-      selector: 'main.content > div.card-container > div.card-body',
-      outerHtml: '<div class="card-body p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">\n  <h2 class="text-xl font-bold text-gray-900">Apple Design</h2>\n  <p class="mt-2 text-gray-600">This is a mock card representing typical styling.</p>\n  <button class="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition">View Details</button>\n</div>',
-      truncatedHtml: '<div class="card-body p-6 bg-white border border-gray-200 rounded-xl shadow-sm hover:shadow-md transition-shadow">\n  <h2 class="text-xl font-bold text-gray-900">Apple Design</h2>\n  <!-- ... CONTENT TRUNCATED ... -->\n</div>',
+      tagName: 'h1',
+      selector: 'main#content > div.flag-container > h1.m24-c-flag-title',
+      outerHtml: '<h1 class="m24-c-flag-title">Welcome to Mozilla</h1>',
+      truncatedHtml: '<h1 class="m24-c-flag-title">Welcome to Mozilla</h1>',
       inlineStyles: '',
       computedStyles: {
         'display': 'block',
-        'background-color': 'rgb(255, 255, 255)',
-        'color': 'rgb(17, 24, 39)',
-        'margin': '0px',
-        'padding': '24px',
-        'width': '380px',
-        'height': '180px',
-        'border-width': '1px',
-        'border-color': 'rgb(229, 231, 235)',
-        'border-radius': '12px',
-        'box-shadow': 'rgba(0, 0, 0, 0) 0px 0px, rgba(0, 0, 0, 0) 0px 0px, rgba(0, 0, 0, 0.05) 0px 1px 2px 0px'
+        'font-size': '48px',
+        'font-weight': '700',
+        'color': 'rgb(255, 255, 255)',
+        'margin-bottom': '16px',
+        'line-height': '1.1',
+        'border-width': '0px'
       },
       parentContext: {
         tagName: 'div',
-        classes: 'card-container max-w-lg mx-auto py-8',
-        outerHtml: '<div class="card-container max-w-lg mx-auto py-8">...</div>'
+        classes: 'flag-container max-w-4xl mx-auto py-12',
+        outerHtml: '<div class="flag-container max-w-4xl mx-auto py-12">...</div>'
       },
-      ancestors: ['div.card-container', 'main.content', 'body', 'html'],
+      ancestors: ['div.flag-container', 'main#content', 'body', 'html'],
       pageMeta: {
-        url: 'http://localhost:5173/dashboard',
-        title: 'Divine Dev Workspace',
-        frameworks: ['React', 'Tailwind CSS']
+        url: 'https://www.mozilla.org/en-US/',
+        title: 'Internet for people, not profit — Mozilla',
+        frameworks: ['Vanilla JS', 'Sass']
       }
     };
 
@@ -527,7 +523,7 @@ What would you like me to do with this component? (e.g., refactor, style, or acc
     const hasSkills = installedSkillsRef.current.length > 0;
     setAutoSkills(auto);
 
-    let welcomeContent = `### Mock Element Selected: \`<div.card-body>\`
+    let welcomeContent = `### Mock Element Selected: \`<h1.m24-c-flag-title>\`
 (Local development mode - API is mocked). `;
 
     if (hasSkills) {

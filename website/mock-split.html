@@ -194,66 +194,20 @@
 <body>
 
   <!-- LEFT PANEL: Simulated Target Website -->
-  <div class="mock-webpage">
+  <div class="mock-webpage" style="position: relative;">
+    <iframe src="/website/mozilla.html" style="width: 100%; height: 100%; border: none; pointer-events: none;"></iframe>
+    
+    <!-- Simulated Highlight Overlay Box -->
+    <div class="inspector-overlay" style="position: absolute; border: 2.5px solid #2563eb; background-color: rgba(37, 99, 235, 0.08); border-radius: 4px; box-shadow: 0 0 12px rgba(37, 99, 235, 0.4); z-index: 15; top: 160px; left: 16%; width: 68%; height: 160px; pointer-events: none;">
+      <div class="inspector-label" style="top: -24px; left: 0;">
+        h1.m24-c-flag-title <span>#welcome-flag</span>
+      </div>
+    </div>
+
     <!-- Simulated Mouse Cursor -->
-    <svg class="simulated-cursor" viewBox="0 0 24 24" fill="none">
+    <svg class="simulated-cursor" style="position: absolute; top: 300px; left: 75%; width: 24px; height: 24px; z-index: 20; pointer-events: none;" viewBox="0 0 24 24" fill="none">
       <path d="M4.5 3V17.5L8.5 13.5L13.5 22.5L16.5 21L11.5 12L17.5 12.5L4.5 3Z" fill="#2563eb" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
     </svg>
-
-    <div class="mock-header">
-      <div class="mock-logo">
-        <div class="mock-logo-dot"></div>
-        <span>DevMetrics</span>
-      </div>
-      <div class="mock-nav">
-        <span class="mock-nav-item active">Dashboard</span>
-        <span class="mock-nav-item">Analytics</span>
-        <span class="mock-nav-item">Deployments</span>
-        <span class="mock-nav-item">Settings</span>
-      </div>
-    </div>
-
-    <div class="mock-content">
-      <div class="mock-title-area">
-        <h2 class="mock-title">System Overview</h2>
-        <p class="mock-subtitle">Live health status, analytics parameters, and container performance metrics.</p>
-      </div>
-
-      <div class="card-grid">
-        <!-- Card 1 (Normal) -->
-        <div class="dashboard-card">
-          <div class="card-meta">Active Sessions</div>
-          <div class="card-value">12,482</div>
-          <p class="card-desc">Simultaneous websocket streams connected to gateway-v3 clusters.</p>
-        </div>
-
-        <!-- Card 2 (Being Inspected!) -->
-        <div class="dashboard-card inspected">
-          <!-- Inspector Tooltip Bubble -->
-          <div class="inspector-label">
-            div.card-body <span>#main-stats</span>
-          </div>
-          
-          <div class="card-meta">Response Latency</div>
-          <div class="card-value">42ms</div>
-          <p class="card-desc">Average edge routing roundtrip delay across 24 global edge caching nodes.</p>
-        </div>
-
-        <!-- Card 3 (Normal) -->
-        <div class="dashboard-card">
-          <div class="card-meta">Memory Load</div>
-          <div class="card-value">62.4%</div>
-          <p class="card-desc">Heap size allocation of containerized microservices in AWS region east.</p>
-        </div>
-
-        <!-- Card 4 (Normal) -->
-        <div class="dashboard-card">
-          <div class="card-meta">Error Rate</div>
-          <div class="card-value">0.02%</div>
-          <p class="card-desc">HTTP response status codes in the 5xx range captured over 15 minutes.</p>
-        </div>
-      </div>
-    </div>
   </div>
 
   <!-- RIGHT PANEL: Embed Side Panel React App -->
