@@ -48,9 +48,9 @@ English
 | Asset | Dimensions | Status | Filename |
 |-------|-----------|--------|----------|
 | Store Icon [REQUIRED] | 128×128 PNG | ✅ Ready | `extension/dist/icon128.png` |
-| Screenshot 1 [REQUIRED] | 1280×800 | ⬜ Not created | `screenshot-inspector.png` |
-| Screenshot 2 [RECOMMENDED] | 1280×800 | ⬜ Not created | `screenshot-skills-manager.png` |
-| Screenshot 3 [RECOMMENDED] | 1280×800 | ⬜ Not created | `screenshot-chat-interface.png` |
+| Screenshot 1 [REQUIRED] | 1280×800 | ✅ Ready | `extension/screenshot-inspector.png` |
+| Screenshot 2 [RECOMMENDED] | 1280×800 | ✅ Ready | `extension/screenshot-skills-manager.png` |
+| Screenshot 3 [RECOMMENDED] | 1280×800 | ✅ Ready | `extension/screenshot-chat-interface.png` |
 | Small Promo Tile [RECOMMENDED] | 440×280 | ⬜ Not created | `promo-small.png` |
 
 ### Screenshot Notes
