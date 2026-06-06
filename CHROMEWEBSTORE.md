@@ -68,6 +68,45 @@ English
 | `storage` | permissions | Required to securely save user API keys, selected options, and custom developer skills guidelines on the local device. |
 | `http://*/*`, `https://*/*` | host_permissions | Required to run the element inspector on any developer-defined webpage and fetch custom coding rules from external sources (e.g., GitHub and the skills registry). |
 
+## Privacy Practices Tab - Developer Dashboard Fields
+
+Copy and paste these exact justifications into the **Privacy practices** tab of the Chrome Developer Dashboard to resolve the publishing errors:
+
+### 1. Single Purpose Description
+> **Field**: Single purpose description
+> **Copy-paste value**:
+> Visual DOM inspector and AI side-panel assistant that matches inspected page elements to custom developer coding standards (SKILL.md) and feeds them into context-aware prompts.
+
+### 2. Permissions & Justifications
+
+* **`sidePanel`**
+  > Required to display the AI assistant console as a native side panel, allowing side-by-side debugging and code generation alongside the active tab without blocking the screen.
+
+* **`activeTab`**
+  > Required to inspect DOM elements, calculate style properties, and highlight elements on the active webpage on-demand when the user clicks the inspector crosshair.
+
+* **`scripting`**
+  > Required to dynamically inject DOM highlighting scripts and element selection event listeners into the active webpage context when the developer initiates inspection.
+
+* **`storage`**
+  > Required to persist user settings (such as LLM provider selection and model configuration) and custom installed developer guidelines (SKILL.md rulesets) securely on-device.
+
+* **Host Permissions (`http://*/*`, `https://*/*`)**
+  > Required to enable the visual DOM inspector overlays on developer-specified local and public testing sites, and to fetch coding standards/rulesets from external developer repositories (like GitHub and package registries).
+
+### 3. Remote Code Use Justification
+> **Field**: Justification for remote code use
+> **Copy-paste value**:
+> The extension does not use, execute, or fetch any remotely hosted code. All JavaScript logic, stylesheets, and layout templates are compiled and bundled entirely within the local extension package.
+
+### 4. Data Usage Certifications
+> In the dashboard, you must check the checkboxes to certify that:
+> 1. Data is NOT sold to third parties.
+> 2. Data is NOT used for purposes unrelated to the extension's core functionality.
+> 3. Data is NOT used for creditworthiness or lending purposes.
+
+---
+
 ## Privacy & Data Use
 
 ### Data Collection
