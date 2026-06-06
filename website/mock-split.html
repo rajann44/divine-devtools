@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Divine DevTools Inspection Mockup</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      background-color: #0c0c0e;
+      font-family: 'Inter', sans-serif;
+      color: #e4e4e7;
+      overflow: hidden;
+    }
+
+    /* Left Side: Mock Webpage (70%) */
+    .mock-webpage {
+      flex: 7;
+      height: 100%;
+      background-color: #09090b;
+      display: flex;
+      flex-direction: column;
+      border-right: 1px solid #27272a;
+      position: relative;
+    }
+
+    .mock-header {
+      height: 60px;
+      border-bottom: 1px solid #27272a;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 1.5rem;
+      background-color: #0c0c0e;
+    }
+
+    .mock-logo {
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      font-size: 1.1rem;
+      color: #fafafa;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .mock-logo-dot {
+      width: 12px;
+      height: 12px;
+      background-color: #10b981;
+      border-radius: 50%;
+    }
+
+    .mock-nav {
+      display: flex;
+      gap: 1.5rem;
+      font-size: 0.8rem;
+      color: #a1a1aa;
+    }
+
+    .mock-nav-item.active {
+      color: #f4f4f5;
+      font-weight: 500;
+    }
+
+    .mock-content {
+      flex: 1;
+      padding: 2rem;
+      overflow-y: auto;
+    }
+
+    .mock-title-area {
+      margin-bottom: 2rem;
+    }
+
+    .mock-title {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #f4f4f5;
+    }
+
+    .mock-subtitle {
+      font-size: 0.85rem;
+      color: #71717a;
+      margin-top: 0.25rem;
+    }
+
+    /* Card Grid */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+    }
+
+    .dashboard-card {
+      background-color: #0e0e11;
+      border: 1px solid #27272a;
+      border-radius: 12px;
+      padding: 1.5rem;
+      position: relative;
+    }
+
+    .card-meta {
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: #71717a;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-value {
+      font-family: 'Outfit', sans-serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #f4f4f5;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-desc {
+      font-size: 0.8rem;
+      color: #a1a1aa;
+      line-height: 1.4;
+    }
+
+    /* Highlighted Element (Inspector Overlay Simulation) */
+    .dashboard-card.inspected {
+      border: 2px solid #2563eb;
+      box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
+      position: relative;
+    }
+
+    /* Inspector Hover Label */
+    .inspector-label {
+      position: absolute;
+      top: -12px;
+      left: 10px;
+      background-color: #2563eb;
+      color: #ffffff;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 6px;
+      border-radius: 4px;
+      z-index: 10;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .inspector-label span {
+      opacity: 0.7;
+    }
+
+    /* Cursor simulation */
+    .simulated-cursor {
+      position: absolute;
+      top: 50%;
+      left: 45%;
+      width: 24px;
+      height: 24px;
+      z-index: 20;
+      pointer-events: none;
+    }
+
+    /* Right Side: Extension Side Panel Embed (30%) */
+    .extension-panel-container {
+      flex: 3;
+      height: 100%;
+      background-color: #1c1c21;
+      display: flex;
+      flex-direction: column;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      background-color: #ffffff;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- LEFT PANEL: Simulated Target Website -->
+  <div class="mock-webpage">
+    <!-- Simulated Mouse Cursor -->
+    <svg class="simulated-cursor" viewBox="0 0 24 24" fill="none">
+      <path d="M4.5 3V17.5L8.5 13.5L13.5 22.5L16.5 21L11.5 12L17.5 12.5L4.5 3Z" fill="#2563eb" stroke="white" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
+
+    <div class="mock-header">
+      <div class="mock-logo">
+        <div class="mock-logo-dot"></div>
+        <span>DevMetrics</span>
+      </div>
+      <div class="mock-nav">
+        <span class="mock-nav-item active">Dashboard</span>
+        <span class="mock-nav-item">Analytics</span>
+        <span class="mock-nav-item">Deployments</span>
+        <span class="mock-nav-item">Settings</span>
+      </div>
+    </div>
+
+    <div class="mock-content">
+      <div class="mock-title-area">
+        <h2 class="mock-title">System Overview</h2>
+        <p class="mock-subtitle">Live health status, analytics parameters, and container performance metrics.</p>
+      </div>
+
+      <div class="card-grid">
+        <!-- Card 1 (Normal) -->
+        <div class="dashboard-card">
+          <div class="card-meta">Active Sessions</div>
+          <div class="card-value">12,482</div>
+          <p class="card-desc">Simultaneous websocket streams connected to gateway-v3 clusters.</p>
+        </div>
+
+        <!-- Card 2 (Being Inspected!) -->
+        <div class="dashboard-card inspected">
+          <!-- Inspector Tooltip Bubble -->
+          <div class="inspector-label">
+            div.card-body <span>#main-stats</span>
+          </div>
+          
+          <div class="card-meta">Response Latency</div>
+          <div class="card-value">42ms</div>
+          <p class="card-desc">Average edge routing roundtrip delay across 24 global edge caching nodes.</p>
+        </div>
+
+        <!-- Card 3 (Normal) -->
+        <div class="dashboard-card">
+          <div class="card-meta">Memory Load</div>
+          <div class="card-value">62.4%</div>
+          <p class="card-desc">Heap size allocation of containerized microservices in AWS region east.</p>
+        </div>
+
+        <!-- Card 4 (Normal) -->
+        <div class="dashboard-card">
+          <div class="card-meta">Error Rate</div>
+          <div class="card-value">0.02%</div>
+          <p class="card-desc">HTTP response status codes in the 5xx range captured over 15 minutes.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- RIGHT PANEL: Embed Side Panel React App -->
+  <div class="extension-panel-container">
+    <iframe src="/extension/dist/panel/index.html" id="panel-frame"></iframe>
+  </div>
+
+  <script>
+    // Automate triggering the mock selection inside the iframe on load
+    const iframe = document.getElementById('panel-frame');
+    iframe.addEventListener('load', () => {
+      // Give the React app a moment to render, then simulate the inspect click
+      setTimeout(() => {
+        try {
+          const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+          // Look for the Inspect element button and click it to trigger the mock element selection details
+          const inspectBtn = iframeDoc.querySelector('[aria-label="Inspect element"]');
+          if (inspectBtn) {
+            inspectBtn.click();
+            console.log("Mock selection triggered inside panel iframe!");
+          }
+        } catch (e) {
+          console.error("Could not script iframe due to security boundaries, make sure to access via localhost", e);
+        }
+      }, 500);
+    });
+  </script>
+</body>
+</html>
