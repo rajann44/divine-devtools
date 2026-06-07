@@ -24,6 +24,19 @@ import { callAgentWithSkills, inferAutoSkills } from './utils/agent';
 // Check if running inside actual Chrome Extension context
 const isChromeExtension = typeof chrome !== 'undefined' && chrome.tabs && chrome.runtime;
 
+// Helper to get default model placeholder based on provider
+const getModelPlaceholder = (provider: string) => {
+  switch (provider) {
+    case 'gemini': return 'gemini-1.5-flash';
+    case 'openai': return 'gpt-4o-mini';
+    case 'anthropic': return 'claude-3-5-sonnet-latest';
+    case 'deepseek': return 'deepseek-chat';
+    case 'groq': return 'llama3-8b-8192';
+    case 'ollama': return 'llama3';
+    default: return 'Enter model name...';
+  }
+};
+
 
 
 export default function App() {
@@ -826,11 +839,27 @@ What would you like me to do with this component? (e.g., refactor, style, or acc
                   <label class="block text-[10px] text-neutral-400 dark:text-neutral-500 mb-1">AI Provider</label>
                   <select 
                     value={settings.provider}
-                    onChange={(e) => updateSettings('provider', e.target.value as any)}
+                    onChange={(e) => {
+                      const newProvider = e.target.value as any;
+                      let defaultModel = settings.model;
+                      if (newProvider === 'gemini') defaultModel = 'gemini-1.5-flash';
+                      else if (newProvider === 'openai') defaultModel = 'gpt-4o-mini';
+                      else if (newProvider === 'anthropic') defaultModel = 'claude-3-5-sonnet-latest';
+                      else if (newProvider === 'deepseek') defaultModel = 'deepseek-chat';
+                      else if (newProvider === 'groq') defaultModel = 'llama3-8b-8192';
+                      else if (newProvider === 'ollama') defaultModel = 'llama3';
+                      
+                      updateSettings('provider', newProvider);
+                      updateSettings('model', defaultModel);
+                    }}
                     class="w-full px-2 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs focus:outline-none focus:border-blue-500 text-neutral-800 dark:text-neutral-200"
                   >
                     <option value="gemini">Gemini API</option>
                     <option value="openai">OpenAI API</option>
+                    <option value="anthropic">Anthropic (Claude)</option>
+                    <option value="deepseek">DeepSeek API</option>
+                    <option value="groq">Groq API</option>
+                    <option value="ollama">Ollama (Local LLM)</option>
                     <option value="custom">Custom Agent Endpoint</option>
                   </select>
                 </div>
@@ -840,24 +869,24 @@ What would you like me to do with this component? (e.g., refactor, style, or acc
                     type="text"
                     value={settings.model}
                     onChange={(e) => updateSettings('model', e.target.value)}
-                    placeholder={settings.provider === 'gemini' ? 'gemini-1.5-flash' : 'gpt-4o-mini'}
+                    placeholder={getModelPlaceholder(settings.provider)}
                     class="w-full px-2 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs focus:outline-none focus:border-blue-500 text-neutral-800 dark:text-neutral-200"
                   />
                 </div>
               </div>
 
-              {settings.provider !== 'custom' ? (
+              {settings.provider === 'ollama' ? (
                 <div>
-                  <label class="block text-[10px] text-neutral-400 dark:text-neutral-500 mb-1">API Key</label>
+                  <label class="block text-[10px] text-neutral-400 dark:text-neutral-500 mb-1">Ollama Host URL</label>
                   <input 
-                    type="password"
-                    value={settings.apiKey}
-                    onChange={(e) => updateSettings('apiKey', e.target.value)}
-                    placeholder="Paste your API key here..."
+                    type="text"
+                    value={settings.customEndpoint}
+                    onChange={(e) => updateSettings('customEndpoint', e.target.value)}
+                    placeholder="http://localhost:11434"
                     class="w-full px-2 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs focus:outline-none focus:border-blue-500 text-neutral-800 dark:text-neutral-200 font-mono"
                   />
                 </div>
-              ) : (
+              ) : settings.provider === 'custom' ? (
                 <div>
                   <label class="block text-[10px] text-neutral-400 dark:text-neutral-500 mb-1">Endpoint URL</label>
                   <input 
@@ -865,6 +894,17 @@ What would you like me to do with this component? (e.g., refactor, style, or acc
                     value={settings.customEndpoint}
                     onChange={(e) => updateSettings('customEndpoint', e.target.value)}
                     placeholder="http://localhost:3000/api/agent"
+                    class="w-full px-2 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs focus:outline-none focus:border-blue-500 text-neutral-800 dark:text-neutral-200 font-mono"
+                  />
+                </div>
+              ) : (
+                <div>
+                  <label class="block text-[10px] text-neutral-400 dark:text-neutral-500 mb-1">API Key</label>
+                  <input 
+                    type="password"
+                    value={settings.apiKey}
+                    onChange={(e) => updateSettings('apiKey', e.target.value)}
+                    placeholder={`Paste your ${settings.provider} API key here...`}
                     class="w-full px-2 py-1.5 rounded-lg border border-neutral-200 dark:border-neutral-800 bg-white dark:bg-neutral-900 text-xs focus:outline-none focus:border-blue-500 text-neutral-800 dark:text-neutral-200 font-mono"
                   />
                 </div>

@@ -35,7 +35,7 @@ export interface ChatMessage {
 }
 
 export interface AgentSettings {
-  provider: 'gemini' | 'openai' | 'custom';
+  provider: 'gemini' | 'openai' | 'anthropic' | 'ollama' | 'deepseek' | 'groq' | 'custom';
   apiKey: string;
   customEndpoint: string;
   model: string;

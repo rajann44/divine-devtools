@@ -127,8 +127,8 @@ export async function callAgentWithSkills(payload: AgentPayload): Promise<string
   const customEndpoint = payload.settings?.customEndpoint;
   const model = payload.settings?.model;
 
-  // Fallback simulator if no API key is specified
-  if (!apiKey && provider !== 'custom') {
+  // Fallback simulator if no API key is specified (except for custom endpoint and local Ollama)
+  if (!apiKey && provider !== 'custom' && provider !== 'ollama') {
     return runLocalSimulation(payload);
   }
 
@@ -225,6 +225,174 @@ export async function callAgentWithSkills(payload: AgentPayload): Promise<string
     }
     return text;
 
+  } else if (provider === 'anthropic') {
+    const modelName = model || 'claude-3-5-sonnet-latest';
+    const url = 'https://api.anthropic.com/v1/messages';
+
+    const anthropicMessages = payload.chatHistory.map(msg => ({
+      role: msg.role === 'assistant' ? 'assistant' : 'user',
+      content: msg.content
+    }));
+    anthropicMessages.push({
+      role: 'user',
+      content: prompt
+    });
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': apiKey || '',
+        'anthropic-version': '2023-06-01'
+      },
+      body: JSON.stringify({
+        model: modelName,
+        max_tokens: 4096,
+        messages: anthropicMessages
+      })
+    });
+
+    if (!response.ok) {
+      const errBody = await response.text();
+      let parsedErr = errBody;
+      try {
+        const json = JSON.parse(errBody);
+        parsedErr = json.error?.message || errBody;
+      } catch (e) {}
+      throw new Error(`Anthropic API Error: ${parsedErr}`);
+    }
+
+    const data = await response.json();
+    const text = data.content?.[0]?.text;
+    if (!text) {
+      throw new Error('Anthropic API returned an empty response.');
+    }
+    return text;
+
+  } else if (provider === 'deepseek') {
+    const modelName = model || 'deepseek-chat';
+    const url = 'https://api.deepseek.com/v1/chat/completions';
+
+    const deepseekMessages = payload.chatHistory.map(msg => ({
+      role: msg.role,
+      content: msg.content
+    }));
+    deepseekMessages.push({
+      role: 'user',
+      content: prompt
+    });
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: modelName,
+        messages: deepseekMessages,
+        temperature: 0.2
+      })
+    });
+
+    if (!response.ok) {
+      const errBody = await response.text();
+      let parsedErr = errBody;
+      try {
+        const json = JSON.parse(errBody);
+        parsedErr = json.error?.message || errBody;
+      } catch (e) {}
+      throw new Error(`DeepSeek API Error: ${parsedErr}`);
+    }
+
+    const data = await response.json();
+    const text = data.choices?.[0]?.message?.content;
+    if (!text) {
+      throw new Error('DeepSeek API returned an empty response.');
+    }
+    return text;
+
+  } else if (provider === 'groq') {
+    const modelName = model || 'llama3-8b-8192';
+    const url = 'https://api.groq.com/openai/v1/chat/completions';
+
+    const groqMessages = payload.chatHistory.map(msg => ({
+      role: msg.role,
+      content: msg.content
+    }));
+    groqMessages.push({
+      role: 'user',
+      content: prompt
+    });
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      },
+      body: JSON.stringify({
+        model: modelName,
+        messages: groqMessages,
+        temperature: 0.2
+      })
+    });
+
+    if (!response.ok) {
+      const errBody = await response.text();
+      let parsedErr = errBody;
+      try {
+        const json = JSON.parse(errBody);
+        parsedErr = json.error?.message || errBody;
+      } catch (e) {}
+      throw new Error(`Groq API Error: ${parsedErr}`);
+    }
+
+    const data = await response.json();
+    const text = data.choices?.[0]?.message?.content;
+    if (!text) {
+      throw new Error('Groq API returned an empty response.');
+    }
+    return text;
+
+  } else if (provider === 'ollama') {
+    const modelName = model || 'llama3';
+    const host = customEndpoint || 'http://localhost:11434';
+    const url = `${host}/api/chat`;
+
+    const ollamaMessages = payload.chatHistory.map(msg => ({
+      role: msg.role === 'assistant' ? 'assistant' : 'user',
+      content: msg.content
+    }));
+    ollamaMessages.push({
+      role: 'user',
+      content: prompt
+    });
+
+    const response = await fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        model: modelName,
+        messages: ollamaMessages,
+        stream: false
+      })
+    });
+
+    if (!response.ok) {
+      const errBody = await response.text();
+      throw new Error(`Ollama Error (${response.status}): ${errBody || response.statusText}`);
+    }
+
+    const data = await response.json();
+    const text = data.message?.content;
+    if (!text) {
+      throw new Error('Ollama returned an empty response.');
+    }
+    return text;
+
   } else if (provider === 'custom') {
     const url = customEndpoint || 'http://localhost:3000/api/agent';
     const response = await fetch(url, {
@@ -309,8 +477,8 @@ export const Modern${tagName.charAt(0).toUpperCase() + tagName.slice(1)} = () =>
 
 To start getting real, context-aware answers leveraging the **skills.sh** framework:
 1. Click the **Settings (gear)** icon in the top right.
-2. Select an AI Provider (Gemini API, OpenAI API, or Custom Agent Endpoint).
-3. Input your API Key or custom endpoint URL.
+2. Select an AI Provider (Gemini, OpenAI, Anthropic, DeepSeek, Groq, Ollama, or Custom).
+3. Input your API Key, custom endpoint, or Ollama host URL.
 
 *Inspected Element Context: Selector \`${payload.elementContext.selector}\` | detected frameworks: ${frameworks.join(', ') || 'none'}*`;
 }

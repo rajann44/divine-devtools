@@ -146,7 +146,8 @@ https://github.com/divine-ai/divine-devtools/issues
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
-| 1.0.0 | 2026-06-07 | Initial release. Visual DOM inspector, AI Side Panel integration, and Dynamic Skills Manager. | Draft |
+| 1.1.0 | 2026-06-07 | Add support for popular AI providers: Anthropic (Claude), DeepSeek, Groq, and Ollama (local LLMs). | Approved |
+| 1.0.0 | 2026-06-07 | Initial release. Visual DOM inspector, AI Side Panel integration, and Dynamic Skills Manager. | Approved |
 
 ## Review Notes
 
