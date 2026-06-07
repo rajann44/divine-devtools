@@ -16,10 +16,30 @@ Divine DevTools is a premium visual DOM inspector and AI assistant that lives di
 
 ## Key Capabilities
 
-- **Visual DOM Inspector**: Point-and-click cursor selector highlighting nodes inside an isolated Shadow DOM overlay. Captures tag name, CSS selectors, computed styles, and element HTML.
-- **Dynamic Skills Palette**: Install custom developer rulesets (e.g. your company coding guidelines or a migrations cheatsheet). Rules are auto-matched based on selectors, tech-stack, or search keywords and dynamically injected into prompts.
-- **Multiple AI Providers**: Native API clients for **Gemini API**, **OpenAI**, **Anthropic (Claude)**, **DeepSeek**, **Groq**, and **Ollama** (for local-first, offline LLMs).
-- **Apple-Inspired Dark UX**: Clean, modern dark mode design with collapsible details and code block copying utilities.
+### 🔍 1. Visual DOM Inspector
+Point-and-click cursor selector highlighting nodes inside an isolated Shadow DOM overlay. Instantly captures tag name, CSS selectors, computed key styles, and HTML source code.
+
+<p align="center">
+  <img src="website/assets/screenshot-inspector.png" alt="Visual DOM Inspector" width="800" style="border-radius: 8px;">
+</p>
+
+---
+
+### 📜 2. Dynamic Skills Palette
+Install custom developer coding standards (e.g. your company's React guidelines or style conventions). Rules are auto-matched based on selectors, tech-stack, or search terms and dynamically injected into prompts.
+
+<p align="center">
+  <img src="website/assets/screenshot-skills-manager.png" alt="Dynamic Skills Manager" width="800" style="border-radius: 8px;">
+</p>
+
+---
+
+### 🤖 3. Grounded AI Assistant & Multi-Provider Settings
+Ask design and refactoring questions side-by-side with your page context. Select between Gemini, OpenAI, Claude, DeepSeek, Groq, or local Ollama LLMs with clean code blocks, copy utilities, and markdown rendering.
+
+<p align="center">
+  <img src="website/assets/screenshot-chat-interface.png" alt="Grounded AI Side Panel Assistant" width="800" style="border-radius: 8px;">
+</p>
 
 ---
 
