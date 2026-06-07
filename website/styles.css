@@ -244,6 +244,43 @@ header {
   transform: translateY(-1px);
 }
 
+.btn-primary.btn-chrome {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.btn-icon {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.badge-container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-badge {
+  height: 48px;
+  border-radius: 6px;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.hero-badge:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
+}
+
+.cta-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
 /* Showcase Section */
 .showcase {
   padding: 40px 0 80px 0;
@@ -549,11 +586,12 @@ footer {
   .hero h1 {
     font-size: 2.5rem;
   }
-  .hero-ctas {
+  .hero-ctas, .cta-buttons {
     flex-direction: column;
     width: 100%;
     max-width: 300px;
     margin: 0 auto;
+    gap: 1rem;
   }
   .btn-primary, .btn-secondary {
     width: 100%;

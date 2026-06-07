@@ -1,8 +1,19 @@
 # Divine DevTools: Visual DOM Inspector & AI Side Panel
 
+<p align="left">
+  <a href="https://chromewebstore.google.com/detail/divine-devtools/pjikjddacfknmdbdeliecpbolciebmbf">
+    <img src="website/assets/chrome-web-store-badge.png" alt="Available in the Chrome Web Store" height="55">
+  </a>
+</p>
+
+[![Chrome Web Store Version](https://img.shields.io/chrome-web-store/v/pjikjddacfknmdbdeliecpbolciebmbf?style=flat-square&color=06b6d4&label=version)](https://chromewebstore.google.com/detail/divine-devtools/pjikjddacfknmdbdeliecpbolciebmbf)
+[![Chrome Web Store Rating](https://img.shields.io/chrome-web-store/rating/pjikjddacfknmdbdeliecpbolciebmbf?style=flat-square&color=a855f7&label=rating)](https://chromewebstore.google.com/detail/divine-devtools/pjikjddacfknmdbdeliecpbolciebmbf)
+[![Chrome Web Store Users](https://img.shields.io/chrome-web-store/users/pjikjddacfknmdbdeliecpbolciebmbf?style=flat-square&color=06b6d4&label=users)](https://chromewebstore.google.com/detail/divine-devtools/pjikjddacfknmdbdeliecpbolciebmbf)
+
 A production-ready Chrome Extension (Manifest V3) that enables developers to visually inspect page components and interact with a context-aware AI developer assistant directly in the browser, following dynamic developer guidelines (skills).
 
 ---
+
 
 ## Key Features
 
@@ -52,7 +63,16 @@ A production-ready Chrome Extension (Manifest V3) that enables developers to vis
 
 ## Installation & Setup
 
-### 1. Build the Extension
+### 1. Install from Chrome Web Store (Recommended)
+Get the officially approved version of Divine DevTools from the [Chrome Web Store](https://chromewebstore.google.com/detail/divine-devtools/pjikjddacfknmdbdeliecpbolciebmbf):
+1. Visit the [Divine DevTools Chrome Web Store listing](https://chromewebstore.google.com/detail/divine-devtools/pjikjddacfknmdbdeliecpbolciebmbf).
+2. Click the **Add to Chrome** button.
+3. Once installed, pin the extension to your toolbar for easy access.
+
+### 2. Manual Setup (For Development & Contributions)
+If you'd like to test the latest unreleased features or build the extension from source, follow these steps:
+
+#### Build the Extension
 Ensure you have Node.js (v18+) and `pnpm` (or `npm`/`yarn`) installed.
 
 ```bash
