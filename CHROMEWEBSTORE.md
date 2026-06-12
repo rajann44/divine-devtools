@@ -64,7 +64,6 @@ English
 |------------|------|---------------|
 | `sidePanel` | permissions | Required to host the AI assistant and developer console inside a native Chrome side panel for side-by-side debugging. |
 | `activeTab` | permissions | Required to inspect, retrieve element tag details, and highlight DOM nodes on the active page when triggered by the user. |
-| `scripting` | permissions | Required to dynamically inject target indicators and element inspection overlays into the active page. |
 | `storage` | permissions | Required to securely save user API keys, selected options, and custom developer skills guidelines on the local device. |
 | `http://*/*`, `https://*/*` | host_permissions | Required to run the element inspector on any developer-defined webpage and fetch custom coding rules from external sources (e.g., GitHub and the skills registry). |
 
@@ -84,9 +83,6 @@ Copy and paste these exact justifications into the **Privacy practices** tab of 
 
 * **`activeTab`**
   > Required to inspect DOM elements, calculate style properties, and highlight elements on the active webpage on-demand when the user clicks the inspector crosshair.
-
-* **`scripting`**
-  > Required to dynamically inject DOM highlighting scripts and element selection event listeners into the active webpage context when the developer initiates inspection.
 
 * **`storage`**
   > Required to persist user settings (such as LLM provider selection and model configuration) and custom installed developer guidelines (SKILL.md rulesets) securely on-device.
@@ -146,6 +142,7 @@ https://github.com/divine-ai/divine-devtools/issues
 
 | Version | Date | Changes | Status |
 |---------|------|---------|--------|
+| 1.1.1 | 2026-06-12 | Remove unused scripting permission to comply with narrowest permissions policy guidelines. | Approved |
 | 1.1.0 | 2026-06-07 | Add support for popular AI providers: Anthropic (Claude), DeepSeek, Groq, and Ollama (local LLMs). | Approved |
 | 1.0.0 | 2026-06-07 | Initial release. Visual DOM inspector, AI Side Panel integration, and Dynamic Skills Manager. | Approved |
 
